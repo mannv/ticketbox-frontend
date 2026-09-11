@@ -1,0 +1,1 @@
+https://www.figma.com/design/Wl3gdupQ1XAIFQcr6LnsF8/Cinemax---Movie-Apps-UI-Kit--Community-?node-id=5-2&p=f&t=DtxRzoKHpYoAt7m3-0
