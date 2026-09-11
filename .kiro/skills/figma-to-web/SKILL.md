@@ -115,7 +115,9 @@ Screen horizontal padding ≈ `24px`. Common gaps: `8px`, `12px`, `16px`.
 
 ## Reusable Components (build these first)
 
-The design repeats a small set of components across ~30 screens. Build them once:
+The design repeats a small set of components across ~30 screens. Build them once.
+For **where to put** each component (shared vs page-local co-location), follow the
+"File & Component Organization" section of the `frontend-patterns` skill.
 
 - **Button** — pill, variants: primary (blue), secondary (orange), outline; sizes; icon+label.
 - **MovieCard** — poster + title + genre + `Rate` badge (portrait card used in Home/Search).

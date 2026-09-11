@@ -20,6 +20,52 @@ Modern frontend patterns for React, Next.js, and performant user interfaces.
 - Handling client-side routing and navigation
 - Building accessible, responsive UI patterns
 
+## File & Component Organization
+
+Organize components by **scope of use**, following Next.js App Router co-location.
+The goal: a component's location tells you how widely it is used.
+
+### Rules
+
+- **Used by 2+ pages → shared**, under `app/components/<domain>/`, grouped by concern:
+  - `app/components/ui/` — generic UI primitives (Button, Input, Tab, Badge)
+  - `app/components/layout/` — layout/shell components (MobileShell, TopBar, BottomNav)
+  - `app/components/brand/` — brand assets (Logo)
+  - add more domains as needed (e.g. `movie/` for MovieCard, MovieListItem)
+- **Used by exactly one page → co-locate** it next to that page in a private
+  `_components/` folder: `app/<route>/_components/`.
+  - The `_` prefix makes it a **private folder** — Next.js does NOT treat it as a route.
+- **Shared hooks** → `app/hooks/`. Page-only hooks → `app/<route>/_components/` (or `_hooks/`).
+
+### Promotion / demotion
+
+- A component starts in a page's `_components/`. The moment a **second** page needs it,
+  **promote** it to `app/components/<domain>/` and update imports.
+- Do NOT dump everything into one flat `app/components/` folder — it becomes unmanageable
+  as the app grows.
+
+### Example
+
+```
+app/
+├── components/            # shared across pages
+│   ├── ui/button.tsx
+│   ├── layout/mobile-shell.tsx
+│   └── brand/cinemax-logo.tsx
+├── hooks/use-swipe.ts     # shared hook
+├── page.tsx               # a route
+└── onboarding/
+    ├── page.tsx
+    └── _components/        # used ONLY by /onboarding
+        ├── slider-dots.tsx
+        └── next-button.tsx
+```
+
+### Naming
+
+- Files: kebab-case (`mobile-shell.tsx`, `next-button.tsx`).
+- One primary component per file; export it by its PascalCase name.
+
 ## Component Patterns
 
 ### Composition Over Inheritance
